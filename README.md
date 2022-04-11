@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Assignment 0 - Getting your baseline
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+As with anything, getting a solid baseline to start off from generally sets you up for success –  the same goes for Git! This assignment is designed to allow you to verify that you have all the tools you need.
 
-## Available Scripts
+![Tools](./docs/tools.jpeg)
+Photo by <a href="https://unsplash.com/@carlevarino?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cesar Carlevarino Aragon</a> on <a href="https://unsplash.com/s/photos/tools?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
-In the project directory, you can run:
+## Purpose & Goal
 
-### `npm start`
+- [ ] Make sure all relevant Git tools are working on your machine
+  - [Git > v2.34.0][1]
+  - [gitk](http://git-scm.com/docs/gitk)
+  - [git-gui](http://git-scm.com/docs/git-gui)
+- [ ] Verify auto complete for Git CLI is working
+- [ ] Verify local Git config is set up
+- [ ] Have [SSH connectivity][2] with GitHub
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Expectations
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Work on your own machine, but feel free to help each other out!
 
-### `npm test`
+## The assignment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Prepping your machine with the tools that you need!
 
-### `npm run build`
+### Installing Git (gitk & git-gui)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Verify if Git is installed or not, and if you are running the [latest version](https://en.wikipedia.org/wiki/Git#Releases) using:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+$ git --version
+git version 2.34.1
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you see above output you are all good and can continue to the next section. Other wise, you first need to install Git by downloading it from [here][1].
 
-### `npm run eject`
+1. Follow the installation instructions when installing Git and stick to the predefined defaults. Once done, redo step one to verify everything looks correct.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. With `git` installed, verify that `gitk` and `git-gui` is also working (they are shipped as part of the Git installation).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Navigate into an existing local repository using the terminal (if you don't have any existing local repo, just initialize a new using `$ git init` from a directory of your choice).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Type: `$ gitk`, if everything is working you should see a window that looks like this.
+   ![Gitk](./docs/gitk.png)
+   If Gitk does not open, you need to trouble shoot what might be wrong. =)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Now it's time to verify that the final helper program `git-gui` is working. From the same project (repo) you verified `gitk` run `$ git gui`. If everything is working, you should be seeing a window that looks like this:
+   ![Git gui](./docs/git-gui.png)
+   If Git GUI does not open, you need to trouble shoot what might be wrong. =)
 
-## Learn More
+All fundamental programs are now verified, now let's level up by enabling auto complete for Git CLI!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Configuring CLI auto complete
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Verify if your Git CLI auto complete is already working by typing `git sw` in your terminal and hit **_tab_** – if everything is working it should automatically complete your command to `git switch`.
 
-### Code Splitting
+1. If this is not the case you need to enable auto complete for your particular system, whether it's `bash`, `zsh`, `Windows Console`, `Windows Powershell`, or `Cygwin`. Google is your best friend here! =)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Configuring your local Git config
 
-### Analyzing the Bundle Size
+With both Git and auto complete working it's time to make sure you have some basic configuration in place. With Git there are three different places configuration can be set:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `$(prefix)/etc/gitconfig` (System-wide configuration file)
+- `~/.gitconfig` (User specific configuration file, a.k.a "global" config)
+- `.git/config` (Repository specific configuration file)
 
-### Making a Progressive Web App
+Configuration is read by Git top down, with last value found taking precedence over values read earlier.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+In this case we're interested in verifying your "global" config, which is applicable across all Git projects on your machine.
 
-### Advanced Configuration
+1. Read the configurations already present using:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+$ git config --list --global
+```
 
-### Deployment
+1. Make sure the following attributes are set with your own details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+user.name=Donald Duck
+user.email=donald.duck@duckburg.com
+init.defaultbranch=main
+```
 
-### `npm run build` fails to minify
+If not, set them up accordingly:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+$ git config --global user.name "Donald Duck"
+$ git config --global user.email "donald.duck@duckburg.com"
+$ git config --global init.defaultbranch "main"
+```
+
+1. Verify through step 1 that all settings now looks as expected.
+
+### Settings up SSH connectivity with GitHub
+
+Finally, when connecting to remote repositories: SSH is the preferred protocol. It allows you to communicate with origin without constantly typing your password.
+
+1. Verify if you already have an SSH connection configured for GitHub by typing the following command:
+
+```
+  $ ssh -T git@github.com
+
+  Warning: Permanently added the RSA host key for IP address '140.82.114.3' to the list of known hosts.
+  Hi Stjaertfena! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+If you don't manage to authenticate and instead get `Permissioned denied`, follow [this][2] manual for install instructions. Then retry the first step again once done.
+
+---
+
+Congratulations, you have now completed the first assignment and gotten your Git baseline in place! 🎉
+
+[1]: http://git-scm.com/downloads "Git"
+[2]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh "SSH"
